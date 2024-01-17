@@ -12,6 +12,7 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import Feature from "ol/Feature.js";
 import Point from "ol/geom/Point.js";
+import CarEmpty from '@/assets/car_empty.png'
 
 function App() {
   const [mapObj, setMapObj] = useState<Map | null>(null);
@@ -33,10 +34,24 @@ function App() {
   });
 
   iconFeature.setStyle(iconStyle);
-
-  const vectorSource = new VectorSource({
-    // features: [iconFeature],
+  
+  const markerSource = new VectorSource({
+    features: [
+      new Feature({
+        geometry: new Point(fromLonLat([126.965, 37.5307])),
+      }),
+    ],
   });
+
+  const vectorSource = new VectorLayer({
+    source: markerSource,
+    style: new Style({
+      image: new Icon({
+        src: CarEmpty,
+        scale: 0.1, // 마커 크기 조절
+      }),
+    }),
+  }); 
 
   useEffect(() => {
     // Map 객체 생성 및 OSM 배경지도 추가
@@ -47,7 +62,7 @@ function App() {
         new TileLayer({
           source: new OSM(),
         }),
-        // vectorSource,
+        vectorSource,
       ],
       target: "map", // 하위 요소 중 id 가 map 인 element가 있어야함.
       view: new View({
