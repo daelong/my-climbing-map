@@ -12,7 +12,9 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import Feature from "ol/Feature.js";
 import Point from "ol/geom/Point.js";
-import CarEmpty from '@/assets/car_empty.png'
+import CarEmpty from "@/assets/car_empty.png";
+
+const { kakao } = window;
 
 function App() {
   const [mapObj, setMapObj] = useState<Map | null>(null);
@@ -34,7 +36,7 @@ function App() {
   });
 
   iconFeature.setStyle(iconStyle);
-  
+
   const markerSource = new VectorSource({
     features: [
       new Feature({
@@ -51,7 +53,7 @@ function App() {
         scale: 0.1, // 마커 크기 조절
       }),
     }),
-  }); 
+  });
 
   useEffect(() => {
     // Map 객체 생성 및 OSM 배경지도 추가
@@ -100,6 +102,18 @@ function App() {
     setMapObj(map);
     return () => map.setTarget(undefined);
     // }
+  }, []);
+
+  useEffect(() => {
+    const ps = new kakao.maps.services.Places();
+    ps.keywordSearch("클라이밍", placesSearchCB);
+
+    // 키워드 검색 완료 시 호출되는 콜백함수
+    function placesSearchCB(data, status, pagination) {
+      console.log(data);
+      console.log(status);
+      console.log(pagination);
+    }
   }, []);
 
   return (
