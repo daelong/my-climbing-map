@@ -13,6 +13,7 @@ import VectorSource from "ol/source/Vector";
 import Feature from "ol/Feature.js";
 import Point from "ol/geom/Point.js";
 import CarEmpty from "@/assets/car_empty.png";
+import PinGreen from "@/assets/pin_green.png";
 
 const { kakao } = window;
 
@@ -49,8 +50,8 @@ function App() {
     source: markerSource,
     style: new Style({
       image: new Icon({
-        src: CarEmpty,
-        scale: 0.1, // 마커 크기 조절
+        src: PinGreen,
+        scale: 0.4, // 마커 크기 조절
       }),
     }),
   });
