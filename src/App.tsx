@@ -118,10 +118,11 @@ function App() {
   }, []);
 
   return (
-    <div
-      id="map"
-      style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
-    ></div>
+    <h1 className="text-3xl font-bold underline text-blue-500">Hello world!</h1>
+    // <div
+    //   id="map"
+    //   style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
+    // ></div>
   );
 }
 
