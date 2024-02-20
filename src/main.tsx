@@ -5,9 +5,11 @@ import "./index.css";
 // import Map from "../src/components/map/MapProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <>
+    {/* <React.StrictMode> */}
     {/* <Map> */}
     <App />
     {/* </Map> */}
-  </React.StrictMode>
+    {/* </React.StrictMode> */}
+  </>
 );
